@@ -15,8 +15,8 @@ Typical Usage
     import matplotlib.pyplot as plt
     pd = Pd(5, 10)
     x, p = pd.pdf(
-        data=[[3, 5, 6, 7, 6, 4], [4, 3, 9, 6, 7, 6]],
-        mass=[1, 2, 1, 3, 2, 1],
+        data=[[3, 5, 6, 7, 6, 4, ...], [4, 3, 9, 6, 7, 6, ...], ...],
+        mass=[1, 2, 1, 3, 2, 1, ...],
     )
     fig = plt.contourf(x[0], x[1], p)
 
@@ -26,6 +26,7 @@ p is the mass weighted probability density of x
 @author: siddhartha.banerjee [sidban@uwalumni.com]
 """
 
+from lib.math import multiply as mult
 import numpy as np
 
 
@@ -64,8 +65,8 @@ class ProbabilityDensity:
         =============
         ::
             x, p = pd.pdf(
-                data=[[3, 5, 6, 7, 6, 4], [4, 3, 9, 6, 7, 6]],
-                mass=[1, 2, 1, 3, 2, 1],
+                data=[[3, 5, 6, 7, 6, 4, ...], [4, 3, 9, 6, 7, 6, ...], ...],
+                mass=[1, 2, 1, 3, 2, 1, ...],
             )
 
         :parameter
@@ -84,6 +85,7 @@ class ProbabilityDensity:
         else:
             mass = np.asarray(mass)
         x_bins = []
+        dx = []
         total_mass = mass.sum()
         idx = np.empty_like(data)
         pdf_o = np.zeros(shape=self._number_of_bins)
@@ -95,14 +97,18 @@ class ProbabilityDensity:
                     num=self._number_of_bins[idim]
                 )
             )
+            dx.append(
+                (np.ptp(idata)) / (self._number_of_bins[idim])
+            )
             idx[idim] = (
-                (
-                        idata - idata.min()
-                ) / (
+                    (
+                            idata - idata.min()
+                    ) / (
                         np.ptp(idata)
-                ) * (self._number_of_bins[idim] - 1)
+                    ) * (self._number_of_bins[idim] - 1)
             )
         for inum, index in enumerate(idx.T):
             pdf_o[tuple(index.astype(int))] = mass[inum]
 
-        return np.meshgrid(*tuple(x_bins)), pdf_o.T / total_mass
+        return np.meshgrid(*tuple(x_bins)), \
+            pdf_o.T / (total_mass * mult(*tuple(dx)))
