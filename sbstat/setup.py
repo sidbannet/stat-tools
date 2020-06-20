@@ -32,6 +32,7 @@ setup(
         "Documentation": "https://github.com/sidbannet/stat-tools",
         "Source Code": "https://github.com/sidbannet/stat-tools",
     },
+    license="OSI Approved :: GNU General Public License v3 (GPLv3)",
     classifiers=[
         "License :: GNU General Public License v3.0 ",
     ]
