@@ -1,43 +1,39 @@
 """Setup of the the sbstat package.
 
-
+setup file for this Python project.
 Author: Siddhartha Banerjee [sidban@uwalumni.com]
 
 """
 
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
+
+with open("README.md", "r") as file:
+    long_description = file.read()
 
 setup(
-    name="sbstat",
-    version="0.3",
-    packages=find_packages(),
-    scripts=["sbstat_intro.py"],
+    name="stat-tools",
+    version="0.2",
+    description="Statistical tool namespace package.",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    keywords="statistics data analysis",
+    packages=find_namespace_packages(include=['sbstat.*']),
 
     # Project uses reStructuredText, so ensure that the docutils get
     # installed or upgraded on the target machine
     install_requires=["docutils>=0.3"],
 
-    package_data={
-        # If any package contains *.txt or *.rst files, include them:
-        "": ["*.txt", "*.rst"],
-        # And include any *.msg files found in the "hello" package, too:
-        "hello": ["*.msg"],
-    },
-
     # metadata to display on PyPI
     author="Siddhartha Banerjee",
     author_email="sidban@uwalumni.com",
-    description="This is an Example Package",
-    keywords="hello world example examples",
-    url="http://example.com/HelloWorld/",   # project home page, if any
+    url="https://github.com/sidbannet/stat-tools",   # project home page
     project_urls={
-        "Bug Tracker": "https://bugs.example.com/HelloWorld/",
-        "Documentation": "https://docs.example.com/HelloWorld/",
-        "Source Code": "https://code.example.com/HelloWorld/",
+        "Bug Tracker": "https://github.com/sidbannet/stat-tools",
+        "Documentation": "https://github.com/sidbannet/stat-tools",
+        "Source Code": "https://github.com/sidbannet/stat-tools",
     },
     classifiers=[
-        "License :: OSI Approved :: Python Software Foundation License"
+        "License :: GNU General Public License v3.0 ",
     ]
-
     # could also include long_description, download_url, etc.
 )

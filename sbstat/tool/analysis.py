@@ -11,7 +11,7 @@ Typical Usage
 ==============
 ::
 
-    from tool.analysis import ProbabilityDensity as Pd
+    from sbstat.tool.analysis import ProbabilityDensity as Pd
     import matplotlib.pyplot as plt
     pd = Pd(5, 10)
     x, p = pd.pdf(
