@@ -26,7 +26,7 @@ p is the mass weighted probability density of x
 @author: siddhartha.banerjee [sidban@uwalumni.com]
 """
 
-from lib.math import multiply as mult
+from sbstat.lib.math import multiply as mult
 import numpy as np
 
 
