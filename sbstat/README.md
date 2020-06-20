@@ -1,4 +1,4 @@
-# sbstat Python library
+# `sbstat` Python library
 
 ## Overview
 
