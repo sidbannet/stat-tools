@@ -11,7 +11,7 @@ Typical Usage
 ==============
 ::
 
-    from tool.analysis import ProbabilityDensity as Pd
+    from sbstat.tool.analysis import ProbabilityDensity as Pd
     import matplotlib.pyplot as plt
     pd = Pd(5, 10)
     x, p = pd.pdf(
@@ -26,7 +26,7 @@ p is the mass weighted probability density of x
 @author: siddhartha.banerjee [sidban@uwalumni.com]
 """
 
-from lib.math import multiply as mult
+from sbstat.lib.math import multiply as mult
 import numpy as np
 
 
